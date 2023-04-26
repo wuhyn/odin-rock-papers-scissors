@@ -50,6 +50,51 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
-const playerSelection = "scissors";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+let playerScore = 0;
+let computerScore = 0;
+
+function game(){
+    let playerMove;
+    let computerMove;
+    let gameResult;
+
+    //Get player input
+    playerMove = prompt("Your turn: rock, paper or scissors?");
+
+    //Get computer input
+    computerMove = getComputerChoice()
+
+    //Get the game result
+    gameResult = playRound(playerMove, computerMove);
+    
+    //Tally up the results
+    if(gameResult.includes("Win")){
+        playerScore++;
+    }
+    else if(gameResult.includes("Lose")){
+        computerScore++;
+    }
+
+    console.log(gameResult);
+    console.log("Player score: " + playerScore);
+    console.log("Computer score: " + computerScore);
+}
+
+function scoreCheck(playerScore, computerScore){
+    if(playerScore > computerScore){
+        console.log("Player has won.");
+    }
+    else {
+        console.log("Computer has won.");
+    }
+}
+
+game();
+game();
+game();
+game();
+game();
+
+scoreCheck(playerScore, computerScore);
+
+
