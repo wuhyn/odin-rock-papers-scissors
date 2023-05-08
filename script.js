@@ -11,6 +11,9 @@ const scissorsButton = document.querySelector('#scissors-btn');
 const playerTotalScore = document.querySelector('#player-score');
 const computerTotalScore = document.querySelector('#computer-score');
 
+//Use query selector to match the heading text
+const statusText = document.querySelector('#status');
+
 //Add event listeners to the game buttons 
 rockButton.addEventListener('click', function(){
     playRound('Rock', getComputerChoice());
@@ -42,13 +45,16 @@ function getComputerChoice(){
 //This function will be used to check the score of the game
 //The player who reaches 5 wins will be declared the winner of the game
 function checkScore(){
+    const content = document.createElement('div');
     if(playerScore === 5){
         //Update scores on webpage
         playerTotalScore.textContent = 0;
         playerScore = 0;
         computerTotalScore.textContent = 0;
         computerScore = 0;
-        console.log("Player has won, resetting score now.");
+        // console.log("Player has won, resetting score now.");
+        content.textContent = 'Player won, scores resetted. Select options to start new game.';
+        statusText.appendChild(content);
     }
     else if(computerScore === 5){
         //Update scores on webpage
@@ -56,7 +62,8 @@ function checkScore(){
         playerScore = 0;
         computerTotalScore.textContent = 0;
         computerScore = 0;
-        console.log("Computer has won, resetting score now.");
+        content.textContent = 'Computer won, scores resetted. Select options to start new game.';
+        statusText.appendChild(content);
     }
 }
 
@@ -66,46 +73,48 @@ function playRound(playerSelection, computerSelection){
     //Ensure player selection string is case-insensitive
     let playerChoice = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
     let computerChoice = computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
+    let result = '';
 
     //If player and computer selection is the same, draw, replay
     if(playerChoice === computerChoice){
-        console.log("Draw");
+        result = "Draw! You chose " + playerChoice + ". Computer chose " + computerChoice + ".";
     }
     //If player chooses rock
     else if(playerChoice == "Rock"){
         if(computerChoice == "Paper"){
             computerScore++;
-            console.log("You Lose! " + computerChoice + " beats " + playerChoice);
+            result = "You Lose! " + computerChoice + " beats " + playerChoice + ".";
         }
         else if(computerChoice == "Scissors"){
             playerScore++;
-            console.log("You Win! " + playerChoice + " beats " + computerChoice);
+            result = "You Win! " + playerChoice + " beats " + computerChoice + ".";
         }
     }
     //If player chooses paper
     else if(playerChoice == 'Paper'){
         if(computerChoice == "Scissors"){
             computerScore++;
-            console.log("You Lose! " + computerChoice + " beats " + playerChoice);
+            result = "You Lose! " + computerChoice + " beats " + playerChoice + ".";
         }
         else if(computerChoice == "Rock"){
             playerScore++;
-            console.log("You Win! " + playerChoice + " beats " + computerChoice);
+            result = "You Win! " + playerChoice + " beats " + computerChoice + ".";
         }
     }
     //If player chooses scissors
     else{
         if(computerChoice == "Rock"){
             computerScore++;
-            console.log("You Lose! " + computerChoice + " beats " + playerChoice);
+            result = "You Lose! " + computerChoice + " beats " + playerChoice + ".";
         }
         else if(computerChoice == "Paper"){
             playerScore++;
-            console.log("You Win! " + playerChoice + " beats " + computerChoice);
+            result = "You Win! " + playerChoice + " beats " + computerChoice + ".";
         }      
     }
 
     //Update scores on webpage
     playerTotalScore.textContent = playerScore;
     computerTotalScore.textContent = computerScore;
+    statusText.textContent = result;
 }
