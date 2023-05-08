@@ -2,25 +2,29 @@
 let playerScore = 0;
 let computerScore = 0;
 
-//Use query selector to match the HTML buttons based on ID
+//Use query selector to match the buttons
 const rockButton = document.querySelector('#rock-btn');
 const paperButton = document.querySelector('#paper-btn');
 const scissorsButton = document.querySelector('#scissors-btn');
 
+//Use query selector to match the score 
+const playerTotalScore = document.querySelector('#player-score');
+const computerTotalScore = document.querySelector('#computer-score');
+
 //Add event listeners to the game buttons 
 rockButton.addEventListener('click', function(){
-    playRound('rock', getComputerChoice());
-    checkScore(playerScore, computerScore);
+    playRound('Rock', getComputerChoice());
+    checkScore();
 });
 
 paperButton.addEventListener('click', function(){
-    playRound('paper', getComputerChoice());
-    checkScore(playerScore, computerScore);
+    playRound('Paper', getComputerChoice());
+    checkScore();
 });
 
 scissorsButton.addEventListener('click', function(){
-    playRound('scissors', getComputerChoice());
-    checkScore(playerScore, computerScore);
+    playRound('Scissors', getComputerChoice());
+    checkScore();
 });
 
 //This function randomly assigns a choice to the computer player
@@ -35,6 +39,27 @@ function getComputerChoice(){
     return choices[randomNumber];
 }
 
+//This function will be used to check the score of the game
+//The player who reaches 5 wins will be declared the winner of the game
+function checkScore(){
+    if(playerScore === 5){
+        //Update scores on webpage
+        playerTotalScore.textContent = 0;
+        playerScore = 0;
+        computerTotalScore.textContent = 0;
+        computerScore = 0;
+        console.log("Player has won, resetting score now.");
+    }
+    else if(computerScore === 5){
+        //Update scores on webpage
+        playerTotalScore.textContent = 0;
+        playerScore = 0;
+        computerTotalScore.textContent = 0;
+        computerScore = 0;
+        console.log("Computer has won, resetting score now.");
+    }
+}
+
 //This function takes the player and computer selections of Rock, Paper or Scissors
 //The player's score is updated based on the logic of the game
 function playRound(playerSelection, computerSelection){
@@ -42,55 +67,45 @@ function playRound(playerSelection, computerSelection){
     let playerChoice = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
     let computerChoice = computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
 
-    console.log(playerChoice);
-    console.log(computerChoice);
-
     //If player and computer selection is the same, draw, replay
-    if(playerChoice == computerChoice){
-        return "Draw";
+    if(playerChoice === computerChoice){
+        console.log("Draw");
     }
     //If player chooses rock
     else if(playerChoice == "Rock"){
         if(computerChoice == "Paper"){
             computerScore++;
-            return "You Lose! " + computerChoice + " beats " + playerChoice;
+            console.log("You Lose! " + computerChoice + " beats " + playerChoice);
         }
         else if(computerChoice == "Scissors"){
             playerScore++;
-            return "You Win! " + playerChoice + " beats " + computerChoice;
+            console.log("You Win! " + playerChoice + " beats " + computerChoice);
         }
     }
     //If player chooses paper
     else if(playerChoice == 'Paper'){
         if(computerChoice == "Scissors"){
             computerScore++;
-            return "You Lose! " + computerChoice + " beats " + playerChoice;
+            console.log("You Lose! " + computerChoice + " beats " + playerChoice);
         }
         else if(computerChoice == "Rock"){
             playerScore++;
-            return "You Win! " + playerChoice + " beats " + computerChoice;
+            console.log("You Win! " + playerChoice + " beats " + computerChoice);
         }
     }
     //If player chooses scissors
     else{
         if(computerChoice == "Rock"){
             computerScore++;
-            return "You Lose! " + computerChoice + " beats " + playerChoice;
+            console.log("You Lose! " + computerChoice + " beats " + playerChoice);
         }
         else if(computerChoice == "Paper"){
             playerScore++;
-            return "You Win! " + playerChoice + " beats " + computerChoice;
+            console.log("You Win! " + playerChoice + " beats " + computerChoice);
         }      
     }
-}
 
-//This function will be used to check the score of the game
-//The player who reaches 5 wins will be declared the winner of the game
-function checkScore(playerScore, computerScore){
-    if(playerScore === 5){
-        console.log("Player has won.");
-    }
-    else if(computerScore === 5){
-        console.log("Computer has won.");
-    }
+    //Update scores on webpage
+    playerTotalScore.textContent = playerScore;
+    computerTotalScore.textContent = computerScore;
 }
