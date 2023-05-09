@@ -2,10 +2,18 @@
 let playerScore = 0;
 let computerScore = 0;
 
+//User query selector for start button
+const startButton = document.querySelector('#start-btn');
 //Use query selector to match the buttons
 const rockButton = document.querySelector('#rock-btn');
 const paperButton = document.querySelector('#paper-btn');
 const scissorsButton = document.querySelector('#scissors-btn');
+
+//Query select the left and right sections displaying player information
+const left = document.querySelector('.left');
+const right = document.querySelector('.right');
+const startGame = document.querySelector('.start-game');
+const gameChoices = document.querySelector('.game-choices');
 
 //Use query selector to match the score 
 const playerTotalScore = document.querySelector('#player-score');
@@ -13,6 +21,16 @@ const computerTotalScore = document.querySelector('#computer-score');
 
 //Use query selector to match the heading text
 const statusText = document.querySelector('#status');
+
+//Add event listener to start button
+startButton.addEventListener('click', function(){
+    left.classList.toggle('inactive');
+    right.classList.toggle('inactive');
+
+    startGame.classList.toggle('inactive');
+    gameChoices.classList.toggle('inactive');
+
+})
 
 //Add event listeners to the game buttons 
 rockButton.addEventListener('click', function(){

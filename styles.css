@@ -1,42 +1,59 @@
 body {
-    background-color: #39CCCC;
+    background-color: #7FDBFF;
     font-family: 'Roboto Mono', monospace;
+    
 }
 
 .header-section{
     display: flex;
     justify-content: center;
-    /* border: 5px solid white; */
 }
 
 .header-section h1 {
     padding: 25px 150px;
-    border: 5px solid white;
 }
 
 .content-section {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
-    /* border: 5px solid white;
-    margin: 75px 350px; */
+    height: 50vh;
+    margin: 45px 150px;
+    border: 5px solid white;
 }
 
-.score-section {
-    display: flex; 
+.content-section .left{
+    /* display: none; */
 }
 
-.score {
-    margin: 5px 50px;
+.content-section .right{
+    /* display: none; */
 }
 
-.choices-section {
-    display: flex;
-    background-color: #FFFFFF;
-    padding: 30px;
+#start-btn {
+    border: 5px solid white;
+    padding: 16px 38px;
 }
 
-.choices-section img {
+#start-btn:hover {
+    background-color: #FF851B; /* Green */
+    color: white;
+    cursor: pointer;
+}
+
+/* Game choices for displaying Rock, Paper, Scissors images */
+.game-choices img{
     width: 100px;
-    padding: 10px;
+    margin: 5px;
+    border: 10px solid black;
+}
+
+.game-choices img:hover{
+    border: 10px solid #FF851B;
+}
+
+/* Inactive */
+.inactive {
+    display: none;
 }
