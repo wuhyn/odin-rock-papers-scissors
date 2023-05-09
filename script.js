@@ -20,7 +20,7 @@ const playerTotalScore = document.querySelector('#player-score');
 const computerTotalScore = document.querySelector('#computer-score');
 
 //Use query selector to match the heading text
-const statusText = document.querySelector('#status');
+const statusText = document.querySelector('#game-status');
 
 //Add event listener to start button
 startButton.addEventListener('click', function(){
@@ -71,7 +71,7 @@ function checkScore(){
         computerTotalScore.textContent = 0;
         computerScore = 0;
         // console.log("Player has won, resetting score now.");
-        content.textContent = 'Player won, scores resetted. Select options to start new game.';
+        content.textContent = 'You won! Play again by selecting a choice.';
         statusText.appendChild(content);
     }
     else if(computerScore === 5){
@@ -80,7 +80,7 @@ function checkScore(){
         playerScore = 0;
         computerTotalScore.textContent = 0;
         computerScore = 0;
-        content.textContent = 'Computer won, scores resetted. Select options to start new game.';
+        content.textContent = 'Computer won! Play again by selecting a choice.';
         statusText.appendChild(content);
     }
 }
@@ -95,39 +95,39 @@ function playRound(playerSelection, computerSelection){
 
     //If player and computer selection is the same, draw, replay
     if(playerChoice === computerChoice){
-        result = "Draw! You chose " + playerChoice + ". Computer chose " + computerChoice + ".";
+        result = "Draw!";
     }
     //If player chooses rock
     else if(playerChoice == "Rock"){
         if(computerChoice == "Paper"){
             computerScore++;
-            result = "You Lose! " + computerChoice + " beats " + playerChoice + ".";
+            result = "Computer gets a point! " + computerChoice + " beats " + playerChoice + ".";
         }
         else if(computerChoice == "Scissors"){
             playerScore++;
-            result = "You Win! " + playerChoice + " beats " + computerChoice + ".";
+            result = "Player gets a point! " + playerChoice + " beats " + computerChoice + ".";
         }
     }
     //If player chooses paper
     else if(playerChoice == 'Paper'){
         if(computerChoice == "Scissors"){
             computerScore++;
-            result = "You Lose! " + computerChoice + " beats " + playerChoice + ".";
+            result = "Computer gets a point! " + computerChoice + " beats " + playerChoice + ".";
         }
         else if(computerChoice == "Rock"){
             playerScore++;
-            result = "You Win! " + playerChoice + " beats " + computerChoice + ".";
+            result = "Player gets a point! " + playerChoice + " beats " + computerChoice + ".";
         }
     }
     //If player chooses scissors
     else{
         if(computerChoice == "Rock"){
             computerScore++;
-            result = "You Lose! " + computerChoice + " beats " + playerChoice + ".";
+            result = "Computer gets a point! " + computerChoice + " beats " + playerChoice + ".";
         }
         else if(computerChoice == "Paper"){
             playerScore++;
-            result = "You Win! " + playerChoice + " beats " + computerChoice + ".";
+            result = "Player gets a point! " + playerChoice + " beats " + computerChoice + ".";
         }      
     }
 
