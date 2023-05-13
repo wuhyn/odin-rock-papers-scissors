@@ -4,6 +4,7 @@ body {
     
 }
 
+/* Game title */
 .header-section{
     display: flex;
     justify-content: center;
@@ -13,6 +14,7 @@ body {
     padding: 25px 150px;
 }
 
+/* Content section for the menu and */
 .content-section {
     display: flex;
     flex-direction: row;
@@ -31,19 +33,21 @@ body {
     display: flex;
     justify-content: center;
     padding: 50px;
+    min-width: 530px;
 }
 
 .content-section .right{
     margin-right: 30px;
 }
 
+/* Game Start button */
 #start-btn {
     border: 5px solid white;
     padding: 16px 38px;
 }
 
 #start-btn:hover {
-    background-color: #FF851B; /* Green */
+    background-color: #FF851B;
     color: white;
     cursor: pointer;
 }
